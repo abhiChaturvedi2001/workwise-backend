@@ -93,11 +93,7 @@ export const Login = async (req, res) => {
         );
 
         // Set token in cookies and respond
-        res.cookie("token", token, {
-            httpOnly: true,
-            sameSite: "strict",
-            maxAge: 24 * 60 * 60 * 1000, // 1 day
-        });
+        res.cookie("token", token);
 
         return res.status(200).json({
             message: "User logged in successfully.",
@@ -116,10 +112,8 @@ export const Login = async (req, res) => {
 export const Logout = async (req, res) => {
     try {
         // Clear the token cookie
-        res.cookie("token", "", {
-            httpOnly: true,
+        res.cookie("token", null, {
             expires: new Date(0),
-            sameSite: "strict",
         });
 
         return res.status(200).json({
