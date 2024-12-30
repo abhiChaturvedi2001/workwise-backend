@@ -2,8 +2,7 @@ import jwt from "jsonwebtoken";
 
 export const authValidation = async (req, res, next) => {
     try {
-        // Check if the token exists in the cookies
-        const token = req.cookies.token;
+        const { token } = req.cookies;
 
         // If token does not exist, return 401 Unauthorized response
         if (!token) {
